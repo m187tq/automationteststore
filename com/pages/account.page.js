@@ -3,8 +3,8 @@ import AccountLogoutPage from "./accountLogout.page";
 class AccountPage{
 
 
-    get userProfileMyAccountTxt() {
-        return $('#customer_menu_top');
+    get welcomeUserProfileTxt() {
+        return $('#customer_menu_top .menu_text');
     }
 
     get myAccountTxt() {

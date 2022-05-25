@@ -1,6 +1,7 @@
 {
     "name": "automationteststore",
     "version": "1.0.0",
+    "private": true,
     "description": "Demo Automation WebdriverIO cucumber workflow",
     "main": "index.js",
     "scripts": {
@@ -31,6 +32,7 @@
         "chromedriver": "^101.0.0",
         "eslint": "^8.15.0",
         "eslint-plugin-wdio": "^7.19.4",
+        "prettier": "^2.6.2",
         "wdio-chromedriver-service": "^7.3.2"
     },
     "dependencies": {

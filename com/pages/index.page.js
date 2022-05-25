@@ -1,7 +1,7 @@
-import BasePage from "./base.page";
 import CategoryMenuComponent from "./components/categoryMenuComponent.page";
 import ItemProductNameComponent from "./components/categoryMenuComponent.page";
-class IndexPage extends BasePage{
+
+class IndexPage{
 
     openDesiredBrowserUrl(){
         return super.openDesiredBrowserUrl("")

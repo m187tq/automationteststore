@@ -1,4 +1,5 @@
 import AccountPage from "./account.page";
+import accountLogoutPage from "./accountLogout.page";
 
 class AccountLoginPage {
 
@@ -17,8 +18,8 @@ class AccountLoginPage {
     get checkoutOptions(){
         return $(".newcustomer > div:nth-child(2) > h4:nth-child(1)");
     }
-    get registerAccountBtn(){
-        return $("label[for='accountFrm_accountregister']");
+    get registerAccountRadioBtn(){
+        return $("form#accountFrm label");
     }
     get createAnAccountTxt(){
         return $(".form-group.mt20.mb40");
@@ -46,6 +47,18 @@ class AccountLoginPage {
         return $(".alert.alert-danger.alert-error");
     }
 
+    async assertLoginErrorMessageIsDisplayed() {
+        await this.errorLoginMessage.waitForDisplayed()
+  }
+
+  async assertAccountLoginPageErrorMessage(loginvalidationerrormessage) {
+    await expect(this.errorLoginMessage).toHaveTextContaining(loginvalidationerrormessage)
+  }
+
+    async clickOnContinueBtn() {
+        await browser.waitUntil(() => this.continueBtn.isClickable());
+        await this.continueBtn.click();
+    }
 
     async clickOnLoginBtn() {
         await browser.waitUntil(() => this.loginBtn.isClickable())

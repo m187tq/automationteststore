@@ -1,8 +1,12 @@
-const {Then, Given, When} = require("@wdio/cucumber-framework");
-const async = require("async");
-
+import {Given, Then, When} from '@wdio/cucumber-framework';
+import indexPage from '../pages/index.page';
+import accountLogin from '../pages/accountLogin.page';
+import topNavigationPage from '../pages/topMenuNav.page';
+import allureReporter from "@wdio/allure-reporter";
+import accountLoginPage from "../pages/accountLogin.page";
 
 Given("user is on index page url as {} and page title as {}",  async (httpsautomationteststorecom, aplacetopracticeyourautomationskills) => {
+
 });
 
 When("user clicks on search box and enters product name as {}", async (lipstick) => {

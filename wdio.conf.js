@@ -30,6 +30,8 @@ exports.config = {
     //
     specs: [
         './com/features/**/login.feature'
+        // './com/features/**/login.feature'
+        // './com/features/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -178,7 +180,36 @@ exports.config = {
         // <boolean> Enable this config to treat undefined definitions as warnings.
         ignoreUndefinedDefinitions: false
     },
-    
+    before: function (capabilities, specs) {
+        browser.addCommand(
+            'customFileUpload',
+            async (path, uploadBoxSelector, submitUploadSelector) => {
+                const remoteFilePath = await browser.uploadFile(path)
+                await $(uploadBoxSelector).setValue(remoteFilePath)
+                await $(submitUploadSelector).click()
+            }
+        )
+
+        browser.addCommand('getTitleAndUrl', async () => {
+            return {
+                title: browser.getTitle(),
+                url: browser.getUrl(),
+            }
+        })
+
+        browser.addCommand('waitAndClick', async (selector) => {
+            await (await $(selector)).waitForDisplayed()
+            await (await $(selector)).click()
+        })
+
+        browser.overwriteCommand('pause', async (origPauseFunction, ms) => {
+            console.log('Sleeping for ' + ms)
+            origPauseFunction(ms)
+            return ms
+        })
+
+
+    },
     //
     // =====
     // Hooks
@@ -346,7 +377,7 @@ exports.config = {
 
         afterTest: async function (test, context, { error, result, duration, passed, retries }) {
         if (error) {
-        await browser.takeScreenshot();
+        browser.takeScreenshot();
         }
     },
     onComplete: function(exitCode, config, capabilities, results) {

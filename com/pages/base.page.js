@@ -1,6 +1,7 @@
-export default class BasePage {
+class BasePage {
 
-    openDesiredBrowserUrl (path) {
+    async openDesiredBrowserUrl(path) {
+        await console.log("Navigating to Url 'https://automationteststore.com/'");
         return browser.url(`${path}`); //https://automationteststore.com/${path}`);
     }
 
@@ -9,15 +10,6 @@ export default class BasePage {
        await console.log("Navigating to Url 'https://automationteststore.com/'");
     }
 
-    verifyPageHeading = async (title) => {
-        const headingTitle = await $(".page-heading");
-        await browser.waitUntil(
-            async () => (await headingTitle.getText()) === title,
-            {
-                timeout: 10000,
-                timeoutMsg: "expected text is different after 10s",
-            }
-        );
-        expect(await headingTitle.getText()).toEqual(title);
-    };
 }
+
+export default new BasePage()
